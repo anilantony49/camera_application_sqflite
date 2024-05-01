@@ -7,7 +7,6 @@ import 'package:gallery_saver/gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 import 'widgets/constants.dart';
 
 class NewImageScreen extends StatefulWidget {
@@ -49,22 +48,6 @@ class _NewImageScreenState extends State<NewImageScreen> {
 
   final formKey = GlobalKey<FormState>();
 
-  // late AncestorWidget _ancestor;
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   // Save a reference to the ancestor widget
-  //   _ancestor = context.dependOnInheritedWidgetOfExactType<AncestorWidget>()!;
-  // }
-
-  // @override
-  // void dispose() {
-  //   _ancestor.someDisposeLogic();
-
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     ImageManager imageManager = ImageManager();
@@ -93,16 +76,16 @@ class _NewImageScreenState extends State<NewImageScreen> {
                               imageManager.image!,
                               fit: BoxFit.cover,
                             )
-                          : Center(child: Text('No images')),
+                          : const Center(child: Text('No images')),
                     ),
                     TextButton.icon(
                         onPressed: () async {
                           await _requestCameraPermission();
+                          // ignore: use_build_context_synchronously
                           pickImage(context, ImageSource.camera);
                         },
-                        icon: Icon(Icons.camera),
-                        label: Text('Add Image'))
-                    // IconButton(onPressed: onPressed, icon: icon)
+                        icon: const Icon(Icons.camera),
+                        label: const Text('Add Image'))
                   ],
                 ),
                 kHeight2,
@@ -179,6 +162,7 @@ class _NewImageScreenState extends State<NewImageScreen> {
                           // Set imageManager.image to null after saving
                           imageManager.image = null;
 
+                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             content: Text('Save Successfully'),

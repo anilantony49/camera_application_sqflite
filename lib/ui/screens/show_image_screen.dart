@@ -33,6 +33,7 @@ class _ShowImageScreenState extends State<ShowImageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         backgroundColor: const Color(0xC1C1C1C1),
         actions: [
           InkWell(
@@ -90,7 +91,16 @@ class _ShowImageScreenState extends State<ShowImageScreen> {
                             )),
                         TextButton(
                             onPressed: () {
+                              // Navigator.popUntil(
+                              //     context, (route) => route.isFirst);
+                              // Navigator.push(`
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => HomeScreen()));
+                              // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const HomeScreen()), (route) => false);
                               Navigator.of(context).pop();
+                              // Navigator.pushNamedAndRemoveUntil(context, '/main_screen', (route) => false);
+
                             },
                             child: const Text(
                               'No',
